@@ -18,10 +18,10 @@ class ServidorWeb(BaseHTTPRequestHandler):
             self.end_headers()
 
             # Abre os arquivos de desenho do site (esqueletos HTML)
-            with open("view/templates/base.html", "r", encoding="utf-8") as f:
+            with open("src/view/templates/base.html", "r", encoding="utf-8") as f:
                 layout = f.read()
 
-            with open("view/templates/listar.html", "r", encoding="utf-8") as f:
+            with open("src/view/templates/listar.html", "r", encoding="utf-8") as f:
                 conteudo = f.read()
 
             # Pede ao Controller a lista de todas as tarefas que está no banco
@@ -86,9 +86,9 @@ class ServidorWeb(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "text/html; utf-8")
             self.end_headers()
 
-            with open("view/templates/base.html", "r", encoding="utf-8") as f:
+            with open("src/view/templates/base.html", "r", encoding="utf-8") as f:
                 layout = f.read()
-            with open("view/templates/form.html", "r", encoding="utf-8") as f:
+            with open("src/view/templates/form.html", "r", encoding="utf-8") as f:
                 form = f.read()
 
             # Prepara o formulário vazio para uma nova tarefa
@@ -113,9 +113,9 @@ class ServidorWeb(BaseHTTPRequestHandler):
             self.send_header("Content-Type", "text/html; utf-8")
             self.end_headers()
 
-            with open("view/templates/base.html", "r", encoding="utf-8") as f:
+            with open("src/view/templates/base.html", "r", encoding="utf-8") as f:
                 layout = f.read()
-            with open("view/templates/form.html", "r", encoding="utf-8") as f:
+            with open("src/view/templates/form.html", "r", encoding="utf-8") as f:
                 form = f.read()
 
             # Preenche o formulário com os dados que já existem no banco
