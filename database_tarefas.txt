@@ -1,0 +1,28 @@
+CREATE DATABASE tarefas;
+
+-- 1. Criação da Tabela (Verifique se não há espaços extras ou caracteres invisíveis)
+CREATE TABLE tarefas (
+    id SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descricao TEXT,
+    status VARCHAR(20) DEFAULT 'pendente',
+    criado_em TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    atualizado_em TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT check_status CHECK (status IN ('pendente', 'concluida'))
+);
+
+-- 2. Função da Trigger
+CREATE OR REPLACE FUNCTION gerenciar_timestamp_tarefas()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.atualizado_em = CURRENT_TIMESTAMP;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 3. Trigger
+CREATE TRIGGER trg_atualizar_tarefas
+BEFORE UPDATE ON tarefas
+FOR EACH ROW
+EXECUTE FUNCTION gerenciar_timestamp_tarefas();

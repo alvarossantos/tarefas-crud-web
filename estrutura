@@ -1,0 +1,26 @@
+projeto/
+│
+├── src/
+│   ├── model/
+│   │   ├── __init__.py
+│   │   └── pessoa.py
+│   │
+│   ├── view/
+│   │   ├── __init__.py
+│   │   ├── templates/
+│   │   │   ├── base.html
+│   │   │   ├── form.html
+│   │   │   └── listar.html
+│   │   └── index.py
+│   │
+│   └── controller/
+│       ├── __init__.py
+│       └── pessoa_controller.py
+│
+├── tests/
+│   ├── __init__.py
+│   └── test_pessoa.py
+│
+├── main.py
+├── requirements.txt
+└── README.md   

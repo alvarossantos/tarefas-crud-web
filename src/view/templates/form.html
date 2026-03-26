@@ -1,0 +1,37 @@
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">{{ titulo_pagina }}</h4>
+            </div>
+            <div class="card-body">
+                <form action="/salvar" method="POST">
+                    <input type="hidden" name="id" value="{{ id_tarefa }}">
+
+                    <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        <input type="text" name="titulo" class="form-control" value="{{ valor_titulo }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Descrição</label>
+                        <textarea name="descricao" class="form-control" rows="3">{{ valor_descricao }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="status" class="form-select">
+                            <option value="pendente" {{ select_pendente }}>Pendente</option>
+                            <option value="concluida" {{ select_concluida }}>Concluída</option>
+                        </select>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">Salvar</button>
+                        <a href="/" class="btn btn-secondary">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
