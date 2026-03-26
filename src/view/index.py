@@ -1,11 +1,10 @@
 from http.server import BaseHTTPRequestHandler
-from src.controller.tarefa_controller import TarefaController
 from urllib.parse import parse_qs
 
 # Classe é o manual de instruições do nosso servidor
 class ServidorWeb(BaseHTTPRequestHandler):
     # Conectamos o Controller (núcleo) da aplicação que sabe mexer nos dados
-    controller = TarefaController()
+    controller = None
 
     # O método do_GET é chamado toda vez que você digita um endereço ou clica num link
     def do_GET(self):

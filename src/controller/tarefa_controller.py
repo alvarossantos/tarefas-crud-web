@@ -1,9 +1,9 @@
 from src.model.tarefa_model import TarefaDAO
 
 class TarefaController:
-    def __init__(self):
+    def __init__(self, dao):
         # Quando o Controller é criado, ele cria o seu próprio acesso ao Banco de Dados
-        self.dao = TarefaDAO()
+        self.dao = dao
 
     def criar_tarefa(self, titulo, descricao):
         # Verificação de segurança: o título não pode ser vazio ou curto demais

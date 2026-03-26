@@ -14,6 +14,37 @@ class TarefaModel:
         self.status = status
         self.criado_em = criado_em
 
+    # Getters e Setters
+    @property
+    def titulo(self):
+        # O atributo real fica escondido com o underline
+        return self._titulo
+
+    @titulo.setter
+    def titulo(self, valor):
+        # Encapsulamento, protegendo o dado de ser vazio ou muito curto
+        if not valor or len(valor.strip()) < 3:
+            raise ValueError("O título deve ter pelo menos 3 caracteres.")
+        self._titulo = valor.strip()
+
+    @property
+    def descricao(self):
+        return self._descricao
+
+    @descricao.setter
+    def descricao(self, valor):
+        self._descricao = valor
+
+    @property
+    def status(self):
+        return self._status
+
+    @status.setter
+    def status(self, valor):
+        if valor not in ['pendente', 'concluida']:
+            raise ValueError("Status inválido.")
+        self._status = valor
+
 # DAO ou Data Access Object (Motor de Acesso aos Dados)
 # Classe responsável por tudo que envolve o nosso Banco de Dados
 class TarefaDAO:
