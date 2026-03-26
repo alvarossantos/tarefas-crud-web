@@ -3,7 +3,7 @@ projeto/
 ├── src/
 │   ├── model/
 │   │   ├── __init__.py
-│   │   └── pessoa.py
+│   │   └── tarefa_model.py
 │   │
 │   ├── view/
 │   │   ├── __init__.py
@@ -15,7 +15,7 @@ projeto/
 │   │
 │   └── controller/
 │       ├── __init__.py
-│       └── pessoa_controller.py
+│       └── tarefa_controller.py
 │
 ├── tests/
 │   ├── __init__.py
