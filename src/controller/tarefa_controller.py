@@ -7,8 +7,8 @@ class TarefaController:
 
     def criar_tarefa(self, titulo, descricao):
         # Verificação de segurança: o título não pode ser vazio ou curto demais
-        if not titulo or len(titulo) < 3:
-            return "Erro: O titulo deve ter pelo menos 3 caracteres."
+        if not titulo or len(titulo.strip()) <= 3:
+            return "Erro: O titulo deve ter mais de 3 caracteres."
 
         # Pede para o DAO inserir no banco e guarda o ID que o banco gerou
         id_gerado = self.dao.create(titulo, descricao)
@@ -18,6 +18,9 @@ class TarefaController:
         return "Erro ao gravar no banco de dados."
 
     def atualizar_tarefa(self, id_tarefa, novo_titulo=None, nova_desc=None, novo_status=None):
+        if novo_titulo is not None and len(novo_titulo.strip()) <= 3:
+            return "Erro: O titulo deve ter mais de 3 caracteres."
+
         # Primeiro, buscamos os dados atuais da tarefa e armazena na variável
         tarefa_atual = self.dao.get_by_id(id_tarefa)
 

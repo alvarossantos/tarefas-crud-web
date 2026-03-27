@@ -5,12 +5,15 @@
                 <h4 class="mb-0">{{ titulo_pagina }}</h4>
             </div>
             <div class="card-body">
-                <form action="/salvar" method="POST">
+                <form id="formTarefa" action="/salvar" method="POST" novalidate>
                     <input type="hidden" name="id" value="{{ id_tarefa }}">
 
                     <div class="mb-3">
                         <label class="form-label">Título</label>
-                        <input type="text" name="titulo" class="form-control" value="{{ valor_titulo }}" required>
+                        <input type="text" id="inputTitulo" name="titulo" class="form-control" value="{{ valor_titulo }}" required minlength="4">
+                        <div class="invalid-feedback">
+                            O título da tarefa deve ter mais de 3 caracteres!
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -35,3 +38,37 @@
         </div>
     </div>
 </div>
+
+<script>
+    const form = document.getElementById('formTarefa');
+    const inputTitulo = document.getElementById('inputTitulo');
+
+    // Validação em tempo real (enquanto o usuário digita)
+    inputTitulo.addEventListener('input', function() {
+        const tamanho = this.value.trim().length;
+        
+        if (tamanho > 0 && tamanho <= 3) {
+            // Deixa a caixa vermelha e mostra o aviso
+            this.classList.add('is-invalid');
+            this.classList.remove('is-valid');
+        } else if (tamanho > 3) {
+            // Deixa a caixa verde (sucesso) e esconde o aviso
+            this.classList.remove('is-invalid');
+            this.classList.add('is-valid');
+        } else {
+            // Se estiver vazio, volta ao normal
+            this.classList.remove('is-invalid', 'is-valid');
+        }
+    });
+
+    // Impede o envio do formulário se a regra não for cumprida
+    form.addEventListener('submit', function(event) {
+        const tamanho = inputTitulo.value.trim().length;
+        
+        if (tamanho <= 3) {
+            event.preventDefault(); // Bloqueia o envio para o servidor
+            inputTitulo.classList.add('is-invalid'); // Garante que fique vermelho
+            inputTitulo.focus(); // Coloca o cursor piscando no campo
+        }
+    });
+</script>
